@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Libre Afrique Tchad — Business des Idées</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #D4A017;
+    --gold-light: #F0C040;
+    --dark: #0A1628;
+    --green-deep: #0D2B5E;
+    --green-mid: #1A4A8A;
+    --cream: #EEF3FA;
+    --cream-dark: #D6E2F0;
+    --text: #0A1628;
+    --text-muted: #4A5A72;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    background: rgba(15,26,15,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,144,42,0.25);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+    transition: all 0.3s;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.15rem;
+    color: var(--gold-light);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+  .logo span { display: block; font-size: 0.55rem; font-weight: 400; color: rgba(255,255,255,0.5); letter-spacing: 0.25em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--white) !important;
+    padding: 0.45rem 1.1rem;
+    border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--dark) !important; }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 26px; height: 2px; background: var(--gold-light); transition: all 0.3s; }
+
+  /* ── HERO ── */
+  #accueil {
+    min-height: 100vh;
+    background: var(--dark);
+    display: flex; align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 100px 5% 80px;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 70% 50%, rgba(26,74,138,0.45) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(212,160,23,0.15) 0%, transparent 60%);
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: linear-gradient(rgba(200,144,42,1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,144,42,1) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 700px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(200,144,42,0.15);
+    border: 1px solid rgba(200,144,42,0.4);
+    color: var(--gold-light);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.08;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--gold-light);
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.75;
+    max-width: 540px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--white);
+    padding: 0.9rem 2rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); color: var(--dark); transform: translateY(-2px); }
+
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.8);
+    padding: 0.9rem 2rem;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold-light); color: var(--gold-light); }
+
+  .hero-stat-row {
+    position: absolute; bottom: 50px; left: 5%; right: 5%;
+    display: flex; gap: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 2rem;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+
+  .hero-stat h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--gold-light);
+    font-weight: 700;
+  }
+  .hero-stat p { font-size: 0.8rem; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; }
+
+  /* ── SECTION BASE ── */
+  section { padding: 100px 5%; }
+
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-intro {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    max-width: 620px;
+  }
+
+  /* ── MISSION ── */
+  #mission { background: var(--white); }
+
+  .mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 4rem;
+  }
+
+  .mission-left .section-intro { max-width: 100%; }
+
+  .mission-left blockquote {
+    border-left: 3px solid var(--gold);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--green-deep);
+    line-height: 1.65;
+  }
+
+  .pillars { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .pillar {
+    display: flex; gap: 1.25rem; align-items: flex-start;
+    padding: 1.5rem;
+    border: 1px solid rgba(200,144,42,0.2);
+    background: var(--cream);
+    border-radius: 4px;
+    transition: all 0.25s;
+  }
+  .pillar:hover { border-color: var(--gold); transform: translateX(4px); }
+
+  .pillar-num {
+    width: 38px; height: 38px; flex-shrink: 0;
+    background: var(--green-deep);
+    color: var(--gold-light);
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .pillar h4 { font-size: 0.9rem; font-weight: 600; color: var(--dark); margin-bottom: 0.3rem; }
+  .pillar p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── ACTUALITÉS ── */
+  #actualites { background: var(--cream); }
+
+  .news-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;
+  }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .news-card {
+    background: var(--white);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.07);
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .news-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+  .news-img {
+    height: 190px;
+    background: var(--green-deep);
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .news-img-1 { background: linear-gradient(135deg, #0D2B5E, #1565C0); }
+  .news-img-2 { background: linear-gradient(135deg, #0A2040, #0D47A1); }
+  .news-img-3 { background: linear-gradient(135deg, #1A1A4A, #283593); }
+
+  .news-img-icon { font-size: 3rem; opacity: 0.4; }
+
+  .news-tag {
+    position: absolute; top: 1rem; left: 1rem;
+    background: var(--gold);
+    color: var(--white);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+  }
+
+  .news-body { padding: 1.5rem; }
+  .news-date { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.6rem; }
+  .news-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--dark); line-height: 1.4; margin-bottom: 0.75rem; }
+  .news-excerpt { font-size: 0.83rem; color: var(--text-muted); line-height: 1.65; }
+
+  /* ── GALERIE ── */
+  #galerie { background: var(--dark); }
+
+  #galerie .section-label { color: var(--gold-light); }
+  #galerie .section-title { color: var(--white); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 0.75rem;
+    margin-top: 3rem;
+  }
+
+  .gallery-item {
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background: var(--green-deep);
+  }
+
+  .gallery-item:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .gallery-placeholder {
+    width: 100%; height: 200px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, rgba(13,43,94,0.5), rgba(212,160,23,0.15));
+    transition: all 0.3s;
+    font-size: 2rem;
+    opacity: 0.7;
+  }
+
+  .gallery-item:first-child .gallery-placeholder { height: 100%; min-height: 415px; font-size: 3rem; }
+
+  .gallery-placeholder span { font-size: 0.78rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.7rem; }
+
+  .gallery-item:hover .gallery-placeholder { opacity: 1; background: linear-gradient(135deg, rgba(13,43,94,0.8), rgba(212,160,23,0.3)); }
+
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0);
+    transition: background 0.3s;
+    display: flex; align-items: flex-end; padding: 1.25rem;
+  }
+  .gallery-item:hover .gallery-overlay { background: rgba(0,0,0,0.5); }
+
+  .gallery-caption {
+    color: var(--white); font-size: 0.8rem; font-weight: 500;
+    opacity: 0; transform: translateY(8px); transition: all 0.3s;
+  }
+  .gallery-item:hover .gallery-caption { opacity: 1; transform: translateY(0); }
+
+  .gallery-note {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+
+  /* ── DONS ── */
+  #dons {
+    background: var(--green-deep);
+    position: relative; overflow: hidden;
+  }
+
+  .dons-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 80% at 80% 50%, rgba(212,160,23,0.12) 0%, transparent 70%);
+  }
+
+  #dons .section-label { color: var(--gold-light); }
+  #dons .section-title { color: var(--white); }
+
+  .dons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    position: relative; z-index: 2;
+    margin-top: 3rem;
+  }
+
+  .dons-text p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .impact-points { list-style: none; margin-top: 1.5rem; }
+  .impact-points li {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    line-height: 1.55;
+  }
+  .impact-points li::before {
+    content: '→'; color: var(--gold-light);
+    flex-shrink: 0; font-weight: 600; margin-top: 1px;
+  }
+
+  .don-form {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(200,144,42,0.25);
+    border-radius: 6px;
+    padding: 2.5rem;
+  }
+
+  .don-form h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  .amount-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem; margin-bottom: 1.25rem;
+  }
+
+  .amount-btn {
+    border: 1px solid rgba(200,144,42,0.3);
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    padding: 0.75rem;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .amount-btn:hover, .amount-btn.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--white);
+  }
+
+  .don-input {
+    width: 100%;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--white);
+    padding: 0.85rem 1rem;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .don-input::placeholder { color: rgba(255,255,255,0.35); }
+  .don-input:focus { border-color: var(--gold); }
+
+  .don-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .don-submit:hover { background: var(--gold-light); color: var(--dark); transform: translateY(-2px); }
+
+  .don-note { font-size: 0.73rem; color: rgba(255,255,255,0.35); margin-top: 1rem; text-align: center; line-height: 1.5; }
+
+  /* ── PARTENAIRES ── */
+  .partners-strip {
+    background: var(--cream-dark);
+    padding: 3.5rem 5%;
+    text-align: center;
+  }
+  .partners-strip p { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2rem; }
+  .partners-logos {
+    display: flex; justify-content: center; align-items: center;
+    gap: 3rem; flex-wrap: wrap;
+  }
+  .partner-logo {
+    font-weight: 700; font-size: 0.9rem;
+    color: var(--text-muted); letter-spacing: 0.05em;
+    opacity: 0.65; transition: opacity 0.2s;
+  }
+  .partner-logo:hover { opacity: 1; color: var(--green-deep); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--white); }
+
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; margin-top: 3rem;
+  }
+
+  .contact-info { }
+  .contact-info p { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; }
+
+  .contact-items { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .contact-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+  }
+
+  .contact-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: var(--cream);
+    border: 1px solid rgba(200,144,42,0.3);
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+
+  .contact-item h4 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); font-weight: 600; margin-bottom: 0.2rem; }
+  .contact-item p { font-size: 0.9rem; color: var(--text); line-height: 1.5; margin: 0; }
+
+  .social-links { display: flex; gap: 0.75rem; margin-top: 2rem; }
+  .social-link {
+    width: 42px; height: 42px;
+    background: var(--green-deep);
+    color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 3px;
+    text-decoration: none; font-size: 1.1rem;
+    transition: all 0.2s;
+    font-weight: 700;
+  }
+  .social-link:hover { background: var(--gold); transform: translateY(-3px); }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label { font-size: 0.78rem; font-weight: 600; color: var(--dark); letter-spacing: 0.05em; }
+  .form-group input, .form-group textarea, .form-group select {
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 3px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    background: var(--cream);
+    color: var(--text);
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); background: var(--white); }
+  .form-group textarea { resize: vertical; min-height: 130px; }
+
+  .form-submit {
+    background: var(--green-deep);
+    color: var(--white);
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    align-self: flex-start;
+  }
+  .form-submit:hover { background: var(--gold); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    padding: 4rem 5% 2rem;
+    border-top: 1px solid rgba(200,144,42,0.15);
+  }
+
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+  }
+
+  .footer-brand .logo { font-size: 1rem; }
+  .footer-brand p { font-size: 0.83rem; color: rgba(255,255,255,0.4); margin-top: 1rem; line-height: 1.7; max-width: 260px; }
+
+  .footer-col h4 {
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 1.25rem;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .footer-col ul li a {
+    color: rgba(255,255,255,0.45); font-size: 0.85rem;
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--gold-light); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.3); }
+  .footer-bottom a { color: var(--gold-light); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-links.open {
+      display: flex; flex-direction: column; position: absolute;
+      top: 70px; left: 0; right: 0;
+      background: rgba(15,26,15,0.98);
+      padding: 1.5rem 5%; gap: 1.25rem;
+    }
+
+    .mission-grid, .dons-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .news-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item:first-child { grid-column: span 2; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stat-row { gap: 1.5rem; flex-wrap: wrap; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 70px 5%; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item:first-child { grid-column: span 1; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .amount-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo">
+    Libre Afrique Tchad
+    <span>Business des Idées · Think Tank Libéral</span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#actualites">Actualités</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#dons" class="nav-cta">Soutenir</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="accueil">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Fondé en 2018 · N'Djaména, Tchad</div>
+    <h1 class="hero-title">
+      Bâtir un <em>Tchad libre</em><br>par la force des idées
+    </h1>
+    <p class="hero-subtitle">
+      Libre Afrique Tchad est un think tank libéral dédié à l'advocacy, l'influence et la formation. Nous construisons les capacités des futurs leaders pour un Tchad plus libre, plus prospère et plus juste.
+    </p>
+    <div class="hero-actions">
+      <a href="#mission" class="btn-primary">Découvrir notre mission</a>
+      <a href="#dons" class="btn-outline">Nous soutenir</a>
+    </div>
+  </div>
+  <div class="hero-stat-row">
+    <div class="hero-stat">
+      <h3>2018</h3>
+      <p>Année de fondation</p>
+    </div>
+    <div class="hero-stat">
+      <h3>4</h3>
+      <p>Piliers stratégiques</p>
+    </div>
+    <div class="hero-stat">
+      <h3>3+</h3>
+      <p>Partenaires internationaux</p>
+    </div>
+    <div class="hero-stat">
+      <h3>100+</h3>
+      <p>Bénéficiaires formés</p>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="section-label">Notre Raison d'Être</div>
+  <div class="mission-grid">
+    <div class="mission-left reveal">
+      <h2 class="section-title">Un laboratoire d'idées pour un Tchad nouveau</h2>
+      <p class="section-intro">
+        Créé en 2018 et officiellement autorisé en 2020, Libre Afrique Tchad est un groupe de réflexion et d'action à orientation libérale. Nous croyons que le développement durable passe avant tout par la liberté individuelle, l'État de droit et des marchés ouverts.
+      </p>
+      <blockquote>
+        "Dans un contexte où le débat politique tourne essentiellement autour des hommes et de la politique politicienne, il n'y a d'autre possibilité que d'externaliser la production d'idées pour influencer l'opinion et inspirer les politiques effectives."
+      </blockquote>
+      <p class="section-intro">
+        Nos activités ciblent la communauté estudiantine, les journalistes et les associations partageant notre vision, à travers deux axes : l'<strong>advocacy</strong> et la <strong>recherche</strong>.
+      </p>
+    </div>
+    <div class="mission-right reveal">
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-num">1</div>
+          <div>
+            <h4>Libertés Individuelles</h4>
+            <p>Promotion et protection des droits civils, des libertés fondamentales et de l'autonomie de chaque citoyen tchadien.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">2</div>
+          <div>
+            <h4>Opportunités Économiques</h4>
+            <p>Création de richesse pour tous, avec un accent sur l'entrepreneuriat des jeunes et un modèle économique libéral limitant l'interventionnisme de l'État.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">3</div>
+          <div>
+            <h4>Gouvernance Démocratique</h4>
+            <p>Promotion de la transparence et renforcement des capacités des jeunes leaders et de la société civile pour une démocratie solide.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">4</div>
+          <div>
+            <h4>Progrès Social</h4>
+            <p>Dépassement des barrières culturelles entravant le développement, notamment les traditions qui limitent l'accès des femmes aux terres agricoles et au capital économique.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTUALITÉS -->
+<section id="actualites">
+  <div class="news-header">
+    <div>
+      <div class="section-label">Nos Activités</div>
+      <h2 class="section-title" style="margin-bottom:0;">Actualités & Projets</h2>
+    </div>
+    <a href="#contact" class="btn-primary">Voir tout</a>
+  </div>
+  <div class="news-grid">
+    <div class="news-card reveal">
+      <div class="news-img news-img-1">
+        <div class="news-img-icon">🎙️</div>
+        <div class="news-tag">Projet en cours</div>
+      </div>
+      <div class="news-body">
+        <div class="news-date">2024 · N'Djaména</div>
+        <h3 class="news-title">A New Chad: Laying the Foundations of a Liberal Society</h3>
+        <p class="news-excerpt">Notre projet phare vise à poser les bases institutionnelles et intellectuelles d'une société libérale au Tchad, à travers des formations, des publications et des plaidoyers.</p>
+      </div>
+    </div>
+    <div class="news-card reveal">
+      <div class="news-img news-img-2">
+        <div class="news-img-icon">🕊️</div>
+        <div class="news-tag">Réalisé</div>
+      </div>
+      <div class="news-body">
+        <div class="news-date">2023 · Région du Lac</div>
+        <h3 class="news-title">Prévention de l'extrémisme violent dans le Lac Tchad</h3>
+        <p class="news-excerpt">Caravane dans les écoles et universités de N'Djaména et visite à la radio Dandalkura pour sensibiliser les jeunes à la paix et la cohésion sociale.</p>
+      </div>
+    </div>
+    <div class="news-card reveal">
+      <div class="news-img news-img-3">
+        <div class="news-img-icon">⚖️</div>
+        <div class="news-tag">Réalisé</div>
+      </div>
+      <div class="news-body">
+        <div class="news-date">2022 · Dialogue National</div>
+        <h3 class="news-title">Justice Transitionnelle & Dialogue National Inclusif</h3>
+        <p class="news-excerpt">Participation active aux activités liées au Dialogue National avec un accent sur la justice transitionnelle et la dignité humaine pour un Tchad juste pour tous.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section id="galerie">
+  <div class="section-label">En Images</div>
+  <h2 class="section-title">Notre Action sur le Terrain</h2>
+  <div class="gallery-grid reveal">
+    <div class="gallery-item">
+      <div class="gallery-placeholder">🎤<span>Séminaire · N'Djaména</span></div>
+      <div class="gallery-overlay"><div class="gallery-caption">Séminaire sur la prévention de l'extrémisme violent — 2017, point de départ de Libre Afrique Tchad</div></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">📻<span>Radio Dandalkura</span></div>
+      <div class="gallery-overlay"><div class="gallery-caption">Visite à la radio Dandalkura — Lac Tchad</div></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">🏫<span>Caravane Écoles</span></div>
+      <div class="gallery-overlay"><div class="gallery-caption">Caravane dans les universités de N'Djaména</div></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">🌍<span>Africa Liberty Forum</span></div>
+      <div class="gallery-overlay"><div class="gallery-caption">Africa Liberty Forum 2024 — Rencontres internationales</div></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">🤝<span>Formation Leaders</span></div>
+      <div class="gallery-overlay"><div class="gallery-caption">Formation des jeunes leaders et de la société civile</div></div>
+    </div>
+  </div>
+  <p class="gallery-note">📸 Ajoutez vos photos en remplaçant les espaces réservés ci-dessus</p>
+</section>
+
+<!-- DONS -->
+<section id="dons">
+  <div class="dons-bg"></div>
+  <div class="section-label">Soutenez-nous</div>
+  <div class="dons-grid">
+    <div class="dons-text reveal">
+      <h2 class="section-title" style="color: white;">Votre soutien<br>change le Tchad</h2>
+      <p>Les idées sont la force motrice du développement. En soutenant Libre Afrique Tchad, vous investissez dans la formation des futurs leaders, la promotion des libertés et la construction d'institutions plus solides.</p>
+      <ul class="impact-points">
+        <li>Formation des étudiants et jeunes leaders en gouvernance libérale</li>
+        <li>Organisation de séminaires, ateliers et conférences à N'Djaména</li>
+        <li>Publications de recherches et rapports d'analyse politique</li>
+        <li>Programmes spéciaux pour l'autonomisation économique des femmes</li>
+        <li>Partenariats avec Atlas Network, Students for Liberty et d'autres</li>
+      </ul>
+    </div>
+    <div class="don-form reveal">
+      <h3>Faire un don</h3>
+      <div class="amount-grid">
+        <button class="amount-btn" onclick="selectAmount(this, '10€')">10 €</button>
+        <button class="amount-btn active" onclick="selectAmount(this, '25€')">25 €</button>
+        <button class="amount-btn" onclick="selectAmount(this, '50€')">50 €</button>
+        <button class="amount-btn" onclick="selectAmount(this, '100€')">100 €</button>
+        <button class="amount-btn" onclick="selectAmount(this, '250€')">250 €</button>
+        <button class="amount-btn" onclick="selectAmount(this, 'autre')">Autre</button>
+      </div>
+      <input type="text" class="don-input" placeholder="Montant personnalisé (€)" id="customAmount" style="display:none;">
+      <input type="text" class="don-input" placeholder="Votre nom complet">
+      <input type="email" class="don-input" placeholder="Votre adresse e-mail">
+      <button class="don-submit" onclick="submitDon()">💛 Soutenir Libre Afrique Tchad</button>
+      <p class="don-note">Votre générosité est précieuse. Pour les modalités de paiement, nous vous contacterons par e-mail sous 48h. Merci de votre soutien.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PARTENAIRES -->
+<div class="partners-strip">
+  <p>Nos partenaires & réseaux</p>
+  <div class="partners-logos">
+    <div class="partner-logo">ATLAS NETWORK</div>
+    <div class="partner-logo">STUDENTS FOR LIBERTY</div>
+    <div class="partner-logo">INSTITUTE OF ECONOMIC AFFAIRS</div>
+    <div class="partner-logo">AFRICA LIBERTY FORUM</div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Nous Rejoindre</div>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <h2 class="section-title">Travaillons ensemble</h2>
+      <p>Vous partagez notre vision d'un Tchad libre et prospère ? Que vous soyez étudiant, journaliste, entrepreneur ou membre de la société civile, nous voulons vous entendre.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Localisation</h4>
+            <p>N'Djaména, République du Tchad</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📘</div>
+          <div>
+            <h4>Facebook</h4>
+            <p><a href="https://www.facebook.com/LibreAfriqueTchad/" target="_blank" style="color: var(--gold); text-decoration: none;">facebook.com/LibreAfriqueTchad</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <h4>E-mail</h4>
+            <p>contact@libreafriuqetchad.org</p>
+          </div>
+        </div>
+      </div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/LibreAfriqueTchad/" target="_blank" class="social-link" title="Facebook">f</a>
+        <a href="#" class="social-link" title="Twitter/X">𝕏</a>
+        <a href="#" class="social-link" title="LinkedIn">in</a>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Prénom</label>
+            <input type="text" placeholder="Votre prénom">
+          </div>
+          <div class="form-group">
+            <label>Nom</label>
+            <input type="text" placeholder="Votre nom">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>E-mail</label>
+          <input type="email" placeholder="votre@email.com">
+        </div>
+        <div class="form-group">
+          <label>Sujet</label>
+          <select>
+            <option value="">Choisissez un sujet...</option>
+            <option>Devenir membre</option>
+            <option>Partenariat</option>
+            <option>Presse & médias</option>
+            <option>Formation & séminaires</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Décrivez votre démarche..."></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">Envoyer le message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">
+        Libre Afrique Tchad
+        <span>Business des Idées</span>
+      </div>
+      <p>Think tank libéral dédié à la promotion des libertés individuelles, de la démocratie et de la prospérité économique au Tchad.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#actualites">Actualités</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#dons">Dons</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Nos piliers</h4>
+      <ul>
+        <li><a href="#mission">Libertés individuelles</a></li>
+        <li><a href="#mission">Économie libérale</a></li>
+        <li><a href="#mission">Gouvernance</a></li>
+        <li><a href="#mission">Progrès social</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Partenaires</h4>
+      <ul>
+        <li><a href="#" target="_blank">Atlas Network</a></li>
+        <li><a href="#" target="_blank">Students for Liberty</a></li>
+        <li><a href="#" target="_blank">Institute of Econ. Affairs</a></li>
+        <li><a href="#" target="_blank">Africa Liberty Forum</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Libre Afrique Tchad. Tous droits réservés.</p>
+    <p>Fondé en 2018 · N'Djaména, Tchad · <a href="https://www.facebook.com/LibreAfriqueTchad/" target="_blank">Facebook</a></p>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // Amount selection
+  function selectAmount(btn, val) {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const custom = document.getElementById('customAmount');
+    custom.style.display = val === 'autre' ? 'block' : 'none';
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.style.boxShadow = window.scrollY > 50 ? '0 4px 30px rgba(0,0,0,0.4)' : 'none';
+  });
+
+  // Form handlers
+  function submitDon() {
+    alert('Merci pour votre soutien ! Nous vous contacterons par e-mail sous 48h pour les modalités de paiement. 🙏');
+  }
+
+  function submitForm() {
+    alert('Message envoyé ! Nous vous répondrons très prochainement. Merci de votre intérêt pour Libre Afrique Tchad.');
+  }
+
+  // Close menu when link clicked
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>
